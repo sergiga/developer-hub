@@ -31,5 +31,6 @@ body { font-family: 'Source Sans Pro', sans-serif; }
   height: 100vh;
   padding: 60px 80px;
   width: 100vw;
+  overflow-y: auto;
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
-  <div class="row">
-    <div class="col-2"></div>
+  <div class="row py-3 border-bottom">
+    <div class="col-1 d-flex align-items-center">
+      <span :class="statusClass">{{ request.status }}</span>
+    </div>
     <div class="col-10">{{ request.endpoint }}</div>
-    <div class="col-1"></div>
     <div class="col-1"></div>
   </div>
 </template>
@@ -20,9 +21,21 @@ export default {
   },
   computed: {
     ...mapGetters(['getRequestByID']),
+    statusClass () {
+      const { status } = this.request
+      if (status >= 200 && status < 300) { return 'badge badge-success' }
+      if (status >= 300 && status < 400) { return 'badge badge-warning' }
+      if (status >= 400) { return 'badge badge-danger' }
+    },
     request () {
       return this.getRequestByID(this.id)
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.border-bottom:last-child {
+  border: none !important;
+}
+</style>

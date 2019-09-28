@@ -1,11 +1,10 @@
 <template>
   <div class="container-fluid">
-    <template v-for="request in requests">
-      <request-list-item
-        :key="request.id"
-        :id="request.id"
-      />
-    </template>
+    <request-list-item
+      v-for="request in requests"
+      :key="request.id"
+      :id="request.id"
+    />
   </div>
 </template>
 
