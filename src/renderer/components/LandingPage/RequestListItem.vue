@@ -4,7 +4,9 @@
       <span :class="statusClass">{{ request.status }}</span>
     </div>
     <div class="col-10">{{ request.endpoint }}</div>
-    <div class="col-1"></div>
+    <div class="col-1 d-flex align-items-center justify-content-end">
+      <unicon name="caret-right" width="1rem" height="1rem" />
+    </div>
   </div>
 </template>
 
