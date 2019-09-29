@@ -1,5 +1,8 @@
 <template>
-  <div class="row py-3 border-bottom">
+  <div
+    class="row py-3 border-bottom"
+    @click="navigateToDetail"
+  >
     <div class="col-1 d-flex align-items-center">
       <span :class="statusClass">{{ request.status }}</span>
     </div>
@@ -12,6 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { REQUEST_DETAILS_PAGE } from '@/router/index'
 
 export default {
   name: 'request-list-item',
@@ -31,6 +35,15 @@ export default {
     },
     request () {
       return this.getRequestByID(this.id)
+    }
+  },
+  methods: {
+    navigateToDetail () {
+      const { id } = this
+      this.$router.push({
+        name: REQUEST_DETAILS_PAGE,
+        params: { id }
+      })
     }
   }
 }

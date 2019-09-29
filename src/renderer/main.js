@@ -6,7 +6,8 @@ import App from './App'
 import icons from './utils/icons'
 import router from './router'
 import store from './store'
-import 'bootstrap/scss/bootstrap.scss'
+import '@/scss/main.scss'
+// import 'bootstrap/scss/bootstrap.scss'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
