@@ -4,7 +4,7 @@
     type="button"
     class="btn d-flex align-items-center justify-content-center"
     :class="buttonClass"
-    @click="$emit('click')"
+    @click="clickHandler"
   >
     <unicon
       v-if="icon"
@@ -22,6 +22,10 @@ export default {
     color: {
       type: String,
       default: 'primary'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     icon: {
       type: String,
@@ -46,7 +50,16 @@ export default {
       } else {
         classGroup.push(`btn-${this.color}`)
       }
+      if (this.disabled) {
+        classGroup.push(`disabled`)
+      }
       return classGroup.join(' ')
+    }
+  },
+  methods: {
+    clickHandler () {
+      if (this.disabled) { return }
+      this.$emit('click')
     }
   }
 }

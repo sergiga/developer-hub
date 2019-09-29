@@ -2,8 +2,23 @@
   <div id="wrapper">
     <main>
       <VButton
-        link
         color="dark"
+        disabled
+        icon="arrow-circle-left"
+        link
+        @click="navigateToList" />
+      <VButton
+        disabled
+        icon="arrow-circle-left"
+        outline
+        @click="navigateToList" />
+      <VButton
+        disabled
+        icon="arrow-circle-left"
+        link
+        @click="navigateToList" />
+      <VButton
+        disabled
         icon="arrow-circle-left"
         @click="navigateToList" />
     </main>

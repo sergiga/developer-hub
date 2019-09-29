@@ -40,6 +40,13 @@ fieldset:disabled a.btn {
     background: $value;
     color: color-yiq($value);
     fill: color-yiq($value);
+    
+    &:disabled,
+    &.disabled {
+      background: $gray-400;
+      color: color-yiq($gray-400);
+      fill: color-yiq($gray-400);
+    }
   }
 
   .btn-outline-#{$color} {
@@ -47,12 +54,25 @@ fieldset:disabled a.btn {
     color: $value;
     fill: $value;
     border: $btn-border-width solid $value;
+
+    &:disabled,
+    &.disabled {
+      color: $gray-400;
+      fill: $gray-400;
+      border-color: $gray-400; 
+    }
   }
 
   .btn-link-#{$color} {
     background: transparent;
     color: $value;
     fill: $value;
+
+    &:disabled,
+    &.disabled {
+      color: $gray-400;
+      fill: $gray-400;
+    }
   }
 }
 
