@@ -1,9 +1,11 @@
 import {
-  uniCaretRight,
-  uniArrowCircleLeft
+  uniAngleRight,
+  uniArrowCircleLeft,
+  uniCaretRight
 } from 'vue-unicons/src/icons'
 
 export default [
-  uniCaretRight,
-  uniArrowCircleLeft
+  uniAngleRight,
+  uniArrowCircleLeft,
+  uniCaretRight
 ]

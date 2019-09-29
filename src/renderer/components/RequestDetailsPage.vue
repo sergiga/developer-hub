@@ -40,7 +40,7 @@ export default {
     },
     response () {
       if (!this.request) { return }
-      return this.request.response
+      return this.request.out
     }
   }
 }

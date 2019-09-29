@@ -1,14 +1,17 @@
 <template>
   <div
-    class="row py-3 border-bottom"
+    class="row py-3 border-bottom pointer"
     @click="navigateToDetail"
   >
     <div class="col-1 d-flex align-items-center">
+      <span class="badge badge-primary">{{ request.method }}</span>
+    </div>
+    <div class="col-1 d-flex align-items-center">
       <span :class="statusClass">{{ request.status }}</span>
     </div>
-    <div class="col-10">{{ request.endpoint }}</div>
+    <div class="col-9">{{ request.endpoint }}</div>
     <div class="col-1 d-flex align-items-center justify-content-end">
-      <unicon name="caret-right" width="1rem" height="1rem" />
+      <unicon name="angle-right" width="1rem" height="1rem" />
     </div>
   </div>
 </template>
