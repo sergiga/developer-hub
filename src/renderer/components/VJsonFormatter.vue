@@ -12,7 +12,7 @@
         width="1rem"
         height="1rem"/>
       <div v-if="name" class="flex-shrink-0 text-nowrap text-truncate text-info ml-2">{{ name }}:</div>
-      <div v-if="leaf" class="text-nowrap text-truncate text-danger ml-1">{{ raw }}</div>
+      <div v-if="isLeaf" class="text-nowrap text-truncate text-danger ml-1">{{ raw }}</div>
       <div v-else class="text-nowrap text-truncate text-muted ml-1">{{ raw }}</div>
     </div>
     <div v-if="!collapsed">
