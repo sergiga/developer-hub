@@ -1,26 +1,18 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
-      <router-view></router-view>
-    </transition>
+    <div id="wrapper" class="p-0 d-flex">
+      <div class="side-menu"></div>
+      <div class="app-content">
+        <router-view name="header" />
+        <router-view class="px-3" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'mlean-hub',
-    data () {
-      return {
-        transitionName: null
-      }
-    },
-    watch: {
-      '$route' (to, from) {
-        const toDepth = to.path.split('/').length
-        const fromDepth = from.path.split('/').length
-        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-      }
-    }
+    name: 'mlean-hub'
   }
 </script>
 
@@ -37,36 +29,18 @@ body { font-family: 'Source Sans Pro', sans-serif; }
 
 #wrapper {
   position: absolute;
-  /* background:
-    radial-gradient(
-      ellipse at top left,
-      rgba(255, 255, 255, 1) 40%,
-      rgba(229, 229, 229, .9) 100%
-    ); */
   background:rgba(255, 255, 255, 1) 70%;
   height: 100vh;
-  padding: 60px 80px;
   width: 100vw;
+}
+
+.side-menu {
+  flex: 0 0 275px;
+  background-color: rebeccapurple;
+}
+
+.app-content {
+  flex: 1;
   overflow-y: auto;
-}
-
-.slide-right-leave-active,
-.slide-right-enter-active,
-.slide-left-leave-active,
-.slide-left-enter-active {
-  transition: 1s;
-}
-
-.slide-left-enter,
-.slide-right-leave-to {
-  transform: translate(100%, 0);
-}
-.slide-left-enter-to,
-.slide-right-enter-to {
-  transform: translate(0%, 0);
-}
-.slide-left-leave-to,
-.slide-right-enter {
-  transform: translate(-100%, 0);
 }
 </style>

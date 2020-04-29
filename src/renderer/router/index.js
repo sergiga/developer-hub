@@ -11,12 +11,18 @@ export default new Router({
     {
       path: '/',
       name: REQUEST_LIST_PAGE,
-      component: require('@/components/LandingPage').default
+      components: {
+        default: require('@/components/LandingPage').default,
+        header: require('@/components/HeaderSearch').default
+      }
     },
     {
       path: '/requests/:id',
       name: REQUEST_DETAILS_PAGE,
-      component: require('@/components/RequestDetailsPage').default
+      components: {
+        default: require('@/components/RequestDetailsPage').default,
+        header: require('@/components/HeaderSearch').default
+      }
     },
     {
       path: '*',

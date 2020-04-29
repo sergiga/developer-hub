@@ -9,9 +9,9 @@
     <unicon
       v-if="icon"
       :name="icon"
-      width="1rem"
-      height="1rem"/>
-    <span class="ml-1">back</span>
+      :width="iconSize"
+      :height="iconSize"/>
+    <slot></slot>
   </button>
 </template>
 
@@ -38,6 +38,18 @@ export default {
     outline: {
       type: Boolean,
       default: false
+    },
+    sm: {
+      type: Boolean,
+      default: false
+    },
+    md: {
+      type: Boolean,
+      default: false
+    },
+    lg: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -50,10 +62,28 @@ export default {
       } else {
         classGroup.push(`btn-${this.color}`)
       }
+
+      if (this.sm) {
+        classGroup.push('btn--sm')
+      } else if (this.lg) {
+        classGroup.push('btn--lg')
+      } else {
+        classGroup.push('btn--md')
+      }
+
       if (this.disabled) {
-        classGroup.push(`disabled`)
+        classGroup.push('disabled')
       }
       return classGroup.join(' ')
+    },
+    iconSize () {
+      if (this.sm) {
+        return '1rem'
+      } else if (this.lg) {
+        return '1.5rem'
+      } else {
+        return '1.25rem'
+      }
     }
   },
   methods: {

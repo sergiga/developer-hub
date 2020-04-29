@@ -1,9 +1,7 @@
 <template>
-  <div id="wrapper">
-    <main>
-      <request-list />
-    </main>
-  </div>
+  <main>
+    <request-list />
+  </main>
 </template>
 
 <script>
