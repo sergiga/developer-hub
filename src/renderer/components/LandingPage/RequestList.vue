@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <request-list-item
-      v-for="request in requests"
+      v-for="request in filteredRequests"
       :key="request.id"
       :id="request.id"
     />
@@ -16,7 +16,13 @@ export default {
   name: 'request-list',
   components: { RequestListItem },
   computed: {
-    ...mapGetters(['requests'])
+    ...mapGetters([
+      'requests',
+      'search'
+    ]),
+    filteredRequests () {
+      return this.requests.filter(request => request.endpoint.includes(this.search))
+    }
   }
 }
 </script>

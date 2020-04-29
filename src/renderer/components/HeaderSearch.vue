@@ -22,7 +22,7 @@
           height="1rem"
           fill="#DEE2E6"
           class="mr-1"/>
-        <input v-model="search">
+        <input :value="search" @input="searchDidChange">
       </div>
     </div>
     <div class="search-header__right-items"></div>
@@ -31,23 +31,30 @@
 
 <script>
 import VButton from '@/components/VButton'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'header-search',
   components: {
     VButton
   },
-  data () {
-    return {
-      search: ''
-    }
+  computed: {
+    ...mapGetters([
+      'search'
+    ])
   },
   methods: {
+    ...mapActions([
+      'updateSearch'
+    ]),
     goBack () {
       this.$router.go(-1)
     },
     goForward () {
       this.$router.go(1)
+    },
+    searchDidChange (e) {
+      this.updateSearch(e.target.value)
     }
   }
 }
