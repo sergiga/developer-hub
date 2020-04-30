@@ -17,7 +17,7 @@ Vue.use(Unicon)
 
 const socket = io.connect('http://localhost:8000')
 
-socket.on('request', (data) => {
+socket.on('request', data => {
   store.dispatch('addRequest', data)
 })
 

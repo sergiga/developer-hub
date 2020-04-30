@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="search-header__right-items"></div>
-  </div>  
+  </div>
 </template>
 
 <script>

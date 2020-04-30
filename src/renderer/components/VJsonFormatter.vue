@@ -44,6 +44,11 @@ export default {
       required: false
     }
   },
+  watch: {
+    json () {
+      this.collapsed = true
+    }
+  },
   computed: {
     caretRotation () {
       return this.collapsed ? 'rotate(0deg)' : 'rotate(90deg)'

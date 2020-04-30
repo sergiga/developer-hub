@@ -6,7 +6,7 @@ Vue.use(Router)
 export const REQUEST_LIST_PAGE = 'landing-page'
 export const REQUEST_DETAILS_PAGE = 'request-details-page'
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -30,3 +30,5 @@ export default new Router({
     }
   ]
 })
+
+export default router
