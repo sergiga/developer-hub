@@ -1,18 +1,17 @@
 <template>
   <div>
     <main>
-      <div class="request-bar py-2">
-        <v-button
-          v-for="item in tabs"
-          color="primary"
-          class="mx-1"
-          sm
-          :key="item.id"
-          :outline="item.outline"
-          @click="() => { item.click(item.id) }"
-        >{{ item.name }}</v-button>
-      </div>
-      <v-json-formatter v-if="json" :json="json"/>
+      <section>
+        <div class="px-5">
+          <h1 class="border-bottom py-3">{{ title }}</h1>
+          <v-tab-bar v-model="tab" :elements="tabs" />
+        </div>
+      </section>
+      <section>
+        <div class="px-5 py-3">
+          <v-json-formatter v-if="json" :json="json"/>
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -20,6 +19,7 @@
 <script>
 import VButton from '@/components/VButton'
 import VJsonFormatter from '@/components/VJsonFormatter'
+import VTabBar from '@/components/VTabBar'
 import { mapGetters } from 'vuex'
 import { REQUEST_LIST_PAGE } from '@/router'
 
@@ -27,10 +27,11 @@ export default {
   name: 'request-details-page',
   components: {
     VButton,
-    VJsonFormatter
+    VJsonFormatter,
+    VTabBar
   },
   created () {
-    if (!this.request) {
+    if (!this.payload) {
       this.$router.push({ name: REQUEST_LIST_PAGE })
     }
   },
@@ -44,33 +45,31 @@ export default {
     json () {
       switch (this.tab) {
         case 0:
-          return this.payload
+          return this.request
         case 1:
           return this.response
       }
     },
-    payload () {
-      if (!this.request) { return }
-      return this.request.in
+    title () {
+      if (!this.payload) { return }
+      return this.payload.endpoint
     },
-    request () {
+    payload () {
       return this.getRequestByID(parseInt(this.$route.params.id))
     },
+    request () {
+      if (!this.payload) { return }
+      return this.payload.in
+    },
     response () {
-      if (!this.request) { return }
-      return this.request.out
+      if (!this.payload) { return }
+      return this.payload.out
     },
     tabs () {
-      const tabs = []
-      let tab = 0
-      if (this.payload) {
-        tabs.push({ id: tab, name: 'Request', outline: this.tab !== tab, click: (t) => { this.tab = t } })
-        tab++
-      }
-      if (this.response) {
-        tabs.push({ id: tab, name: 'Response', outline: this.tab !== tab, click: (t) => { this.tab = t } })
-      }
-      return tabs
+      return [
+        { id: 0, name: 'Request', enabled: !!this.request },
+        { id: 1, name: 'Response', enabled: !!this.response }
+      ]
     }
   }
 }

@@ -3,8 +3,8 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export const REQUEST_LIST_PAGE = 'landing-page'
-export const REQUEST_DETAILS_PAGE = 'request-details-page'
+export const REQUEST_LIST_PAGE = 'Home'
+export const REQUEST_DETAILS_PAGE = 'Request Details'
 
 const router = new Router({
   routes: [

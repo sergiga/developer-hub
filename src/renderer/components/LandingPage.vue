@@ -1,6 +1,10 @@
 <template>
   <main>
-    <request-list />
+    <section>
+      <div class="px-5">
+        <request-list />
+      </div>
+    </section>
   </main>
 </template>
 
