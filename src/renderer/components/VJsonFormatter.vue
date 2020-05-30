@@ -15,14 +15,15 @@
       <div v-if="isLeaf" class="text-nowrap text-truncate text-danger ml-1">{{ raw }}</div>
       <div v-else class="text-nowrap text-truncate text-muted ml-1">{{ raw }}</div>
     </div>
-    <div v-if="!collapsed">
+    <div v-if="nodes" v-show="!collapsed">
       <v-json-formatter
         v-for="(value, key) in nodes"
         class="px-3"
         :key="key"
         :json="value"
         :name="key"
-        :root="false" />
+        :root="false"
+      />
     </div>
   </div>
 </template>
@@ -60,14 +61,15 @@ export default {
       )
     },
     nodes () {
+      if (this.isLeaf) { return null }
+      let json = this.json
       if (Array.isArray(this.json)) {
-        const json = {}
+        json = {}
         this.json.forEach((item, index) => {
           json[index] = item
         })
-        return json
       }
-      return this.json
+      return json
     },
     raw () {
       if (Array.isArray(this.json)) {
