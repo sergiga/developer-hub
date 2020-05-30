@@ -3,7 +3,8 @@
     <main>
       <section>
         <div class="px-5">
-          <h1 class="border-bottom py-3">{{ title }}</h1>
+          <h6 class="border-bottom py-3">{{ title }}</h6>
+          <v-collapsible-table v-if="parameters" title="Parameters" :rows="parameters"/>
           <v-tab-bar v-model="tab" :elements="tabs" />
         </div>
       </section>
@@ -18,6 +19,7 @@
 
 <script>
 import VButton from '@/components/VButton'
+import VCollapsibleTable from '@/components/VCollapsibleTable'
 import VJsonFormatter from '@/components/VJsonFormatter'
 import VTabBar from '@/components/VTabBar'
 import { mapGetters } from 'vuex'
@@ -27,11 +29,12 @@ export default {
   name: 'request-details-page',
   components: {
     VButton,
+    VCollapsibleTable,
     VJsonFormatter,
     VTabBar
   },
   created () {
-    if (!this.payload) {
+    if (!this.request) {
       this.$router.push({ name: REQUEST_LIST_PAGE })
     }
   },
@@ -45,31 +48,35 @@ export default {
     json () {
       switch (this.tab) {
         case 0:
-          return this.request
+          return this.requestBody
         case 1:
-          return this.response
+          return this.responseBody
       }
     },
-    title () {
-      if (!this.payload) { return }
-      return this.payload.endpoint
-    },
-    payload () {
-      return this.getRequestByID(parseInt(this.$route.params.id))
+    parameters () {
+      if (!this.request || !this.request.parameters) { return }
+      return this.request.parameters.split('&').map(parameter => parameter.split('='))
     },
     request () {
-      if (!this.payload) { return }
-      return this.payload.in
+      return this.getRequestByID(parseInt(this.$route.params.id))
     },
-    response () {
-      if (!this.payload) { return }
-      return this.payload.out
+    requestBody () {
+      if (!this.request) { return }
+      return this.request.body
+    },
+    responseBody () {
+      if (!this.request || !this.request.response.body) { return }
+      return this.request.response.body
     },
     tabs () {
       return [
-        { id: 0, name: 'Request', enabled: !!this.request },
-        { id: 1, name: 'Response', enabled: !!this.response }
+        { id: 0, name: 'Request', enabled: !!this.requestBody },
+        { id: 1, name: 'Response', enabled: !!this.responseBody }
       ]
+    },
+    title () {
+      if (!this.request) { return }
+      return this.request.url
     }
   }
 }

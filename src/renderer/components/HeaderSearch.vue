@@ -15,7 +15,7 @@
         @click="goForward"/>
     </div>
     <div class="search-header__center-items d-flex align-items-center justify-content-center">
-      <div class="search-bar d-flex border rounded-lg p-1">
+      <div class="search-bar d-flex align-items-center border rounded-lg px-1">
         <unicon
           name="search"
           width="1rem"

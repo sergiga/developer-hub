@@ -21,7 +21,7 @@ export default {
       'search'
     ]),
     filteredRequests () {
-      return this.requests.filter(request => request.endpoint.includes(this.search))
+      return this.requests.filter(request => request.url.includes(this.search))
     }
   }
 }

@@ -2,7 +2,7 @@
   <div id="app">
     <div id="wrapper" class="p-0 d-flex">
       <div class="side-menu border-right">
-        <h3 class="text-uppercase text-center py-4">{{ $route.name }}</h3>
+        <h6 class="text-uppercase text-center py-4">{{ $route.name }}</h6>
       </div>
       <div class="app-content">
         <router-view name="header" />

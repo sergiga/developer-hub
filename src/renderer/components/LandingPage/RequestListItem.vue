@@ -9,7 +9,7 @@
     <div class="col-1 d-flex align-items-center">
       <span :class="statusClass">{{ request.status }}</span>
     </div>
-    <div class="col-9">{{ request.endpoint }}</div>
+    <div class="col-9">{{ request.url }}</div>
     <div class="col-1 d-flex align-items-center justify-content-end">
       <unicon name="angle-right" width="1rem" height="1rem" />
     </div>

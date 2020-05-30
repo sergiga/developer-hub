@@ -4,7 +4,7 @@
       v-for="element in elements"
       :key="element.id"
       :class="classTabItem(element)"
-      @click="didSelectTab(element.id)"
+      @click="didSelectTab(element)"
     >{{ element.name }}</div>
   </div>
 </template>
@@ -38,7 +38,8 @@ export default {
       }
       return classes
     },
-    didSelectTab (id) {
+    didSelectTab ({id, enabled}) {
+      if (!enabled) { return }
       this.$emit('input', id)
     }
   }
